@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"testing"
 
+	"github.com/Pineapples27/chromedp/kb"
 	"github.com/chromedp/cdproto/cdp"
 	"github.com/chromedp/cdproto/input"
-	"github.com/chromedp/chromedp/kb"
 )
 
 // inViewportJS is a javascript snippet that will get the specified node
