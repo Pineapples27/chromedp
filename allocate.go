@@ -232,7 +232,9 @@ func (a *ExecAllocator) Allocate(ctx context.Context, opts ...BrowserOption) (*B
 			}
 		}
 		a.wg.Done()
-		close(c.allocated)
+		if !IsClosed(c.allocated) {
+			close(c.allocated)
+		}
 	}()
 
 	var wsURL string
@@ -276,6 +278,16 @@ func (a *ExecAllocator) Allocate(ctx context.Context, opts ...BrowserOption) (*B
 	browser.process = cmd.Process
 	browser.userDataDir = dataDir
 	return browser, nil
+}
+
+func IsClosed(ch <-chan struct{}) bool {
+	select {
+	case <-ch:
+		return true
+	default:
+	}
+
+	return false
 }
 
 // readOutput grabs the websocket address from chrome's output, returning as
