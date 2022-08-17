@@ -2,6 +2,8 @@ module github.com/Pineapples27/chromedp
 
 go 1.18
 
+replace github.com/chromedp/chromedp => github.com/Pineapples27/chromedp v0.0.0
+
 require (
 	github.com/chromedp/cdproto v0.0.0-20220816211547-b8b15824df23
 	github.com/gobwas/ws v1.1.0
